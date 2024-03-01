@@ -1,27 +1,106 @@
-# Formularios
+# Formularios en Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+# Componentes en linea:
+    Todo en una pagina estilo vue y react, es mas visible
+    ng g c form1 -st
+        -s (styles en linea)
+        -t (template en linea)
 
-## Development server
+# Angular tiene 2 tipos de formularios:
+    Reactivos y basados en plantillas.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# ------------------------------------------ formularios Impulsados por plantilla /template driven:----------------------------------------#
 
-## Code scaffolding
+# Intro
+  Recomendados para formularios pequeños.
+    Importar formsModule(x2)
+    <input type="text" [(ngModel)]="variable1" />
+    <p>Resultado: {{variable1}} </p>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    export class TemplateDrivenComponent {
+      variable1='';
+    }
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+# Eventos para validacion en forms Template-driven (COmponente formulario-plantillas-detalle)
+  Se les agrega un id asi: #id1="ngModel"
+  < input type="email" [(ngModel)]="variable1" #id1="ngModel" >  -->
+  Y lo podemos usar en el template asi:  < p> id1.pristine: {{id1.pristine | json }}< /p> -->
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  Podemos acceder a los siguientes estados:
+    untouched The field has not been touched yet
+    touched The field has been touched
+    pristine The field has not been modified yet
+    dirty The field has been modified
+    invalid The field content is not valid
+    valid The field content is valid
 
-## Running end-to-end tests
+Estados de formulario completo:
+    pristine No fields have been modified yet
+    dirty One or more have been modified
+    invalid The form content is not valid
+    valid The form content is valid
+    submitted The form is submitted
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Cuando es valid (Ver detalle en componente directivas-angular):
+  Podemos definir nuestros custom validator in Template-driven pero ya vienen algunos interesantes:
+    
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class="form-control"
+      required
+      minlength="3"
+      maxlength="30"
+      appForbiddenName="bob"
+      [(ngModel)]="user.name"
+      #name="ngModel"
+    />
 
-## Further help
+# Validar un form completo (ver componente validacion-form-completo )
+  (ngSubmit) dispara una funcion, dicha funcion puede ser una validacion
+  El componente validacion-form-completo es un buen ejemplo para mezclar este submit con los eventos para obtener una buena validacion.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Crear una directiva personalizada
+  ng g directiva nombre
+  La importamos 2 veces en app.module.ts
+
+  constructor(private eleRef: ElementRef) { 
+    eleRef.nativeElement.style.background = 'red';
+  }
+  y la usamos asi:
+    <h1 appDirectivaCustom >Como usar una directiva personalizada en este titulo</h1>
+  
+
+# Custom validator en template-driven
+    Seria una directiva y en ella una funcion que retorne un ValidatorFn, masomenos asi:
+
+  export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const forbidden = nameRe.test(control.value);
+      return forbidden ? { forbiddenName: { value: control.value } } : null;
+    };
+  }
+  Luego agregar en los imports de app.module.ts
+
+
+
+
+
+  # -------------------------- Formularios reactivos ----------------------------------------------------------------------------#
+
+  # Intro
+  Para formularios mas largos.
+    Importar FormControl y ReactiveFormsModule(x2) 
+     template: `
+        <h2>Formulario Reactivo</h2>
+        <input type="text" [formControl]="control1" />
+        <p>Resultado: {{control1.value}}</p>
+      `,
+    export class FormReactivo1Component {
+     control1=new FormControl();
+    }
+
+# Continuar
