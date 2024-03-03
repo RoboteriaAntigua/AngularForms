@@ -1,5 +1,9 @@
 # Formularios en Angular
 
+# Modulos importados en imports.module.ts
+    FormsModule,
+    ReactiveFormsModule
+
 # Componentes en linea:
     Todo en una pagina estilo vue y react, es mas visible
     ng g c form1 -st
@@ -88,23 +92,55 @@ Estados de formulario completo:                               <br>
   }
   Luego agregar en los imports de app.module.ts
 
-
-
+  # Resumen template/driven:
+    · [(ngModel)]="variable1" #id1="ngModel"
+    · Con variable1 accedemos desde la clase.
+    · Con id1.x retornamos true o false dependiendo de cierto evento: (id1.touched || id1.valid && id1.dirty)
+    · con (ngSubmit)="funcion1()" Disparamos una funcion.
+    · Para nuestro valid podemos crear directivas propias.
 
   # Formularios reactivos
-  -----------------------------------------------------------------------------------------------------#
+  ------------------------------------------------------------------------------------------------------------------------------------------
 
-  # Intro
+  # Intro (ver form-reactivo1)
   Para formularios mas largos.
     Importar FormControl y ReactiveFormsModule(x2):
-    <pre> 
-     template: `
-        <input type="text" [formControl]="control1" />
-        <p>Resultado: {{control1.value}}</p>
-      `,
+     
+     template:
+     
+        <input type="text" [formControl]="control1" />  <br>
+        <p>Resultado: {{control1.value}}</p>            <br>
+
     export class FormReactivo1Component {
      control1=new FormControl();
     }
-    </pre>
     
-# Continuar
+
+  # grupos  (ver group-reactivo)
+     <form [formGroup]="grupo1">    <br>
+    <input formControlName="name">  <br>
+    </form>                         <br>
+  Son instancia de formGroup
+     grupo1 = new FormGroup( {
+        name : new FormControl(),
+        email : new FormControl(),
+        password : new FormControl(),
+      });
+    Podemos acceder a los eventos como grupo:
+      grupo1.dirty && grupo1.valid
+
+# Resumen reactivos:
+   <input [formControl]="name">
+   name = new formControl();
+  · con name.value  accedemos a su valor
+  · name.setValue("valor")  Modificamos
+  · name.evento   Sabemos el estado, por ej: name.dirty retorna true/false
+  · name.disabled Queda exento de ser validado.
+ 
+  Para grupos:
+   [formGroup]="nombre"  
+    nombre = new FormGroup()
+
+
+# Resumen elementos nativos para validacion en html5: 
+  Continuar

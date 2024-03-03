@@ -4,15 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormReactivo1Component } from './form-reactivo1/form-reactivo1.component';
-import { FormsModule } from '@angular/forms';
+import { ImportsModule } from './imports.module';
+
 import { TemplateDrivenComponent } from './template-driven/template-driven.component';
-import { FormControl, ReactiveFormsModule, Validator } from '@angular/forms';
 import { FormularioPlantillasDetalleComponent } from './formulario-plantillas-detalle/formulario-plantillas-detalle.component';
 import {DirectivaCustomDirective} from './formulario-plantillas-detalle/directiva-custom.directive';
 import { ValidacionCustomDirective } from './formulario-plantillas-detalle/validacion-custom.directive';
 import { PlantillasFormCompletoComponent } from './plantillas-form-completo/plantillas-form-completo.component';
-import { DirectivasAngularComponent } from './directivas-angular/directivas-angular.component'; 
+import { DirectivasAngularComponent } from './directivas-angular/directivas-angular.component';
+
+
+import { FormReactivo1Component } from './form-reactivo1/form-reactivo1.component';
+import { GroupReactivoComponent } from './group-reactivo/group-reactivo.component'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +26,15 @@ import { DirectivasAngularComponent } from './directivas-angular/directivas-angu
     DirectivaCustomDirective,
     ValidacionCustomDirective,
     PlantillasFormCompletoComponent,
-    DirectivasAngularComponent
+    DirectivasAngularComponent,
+    GroupReactivoComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    ImportsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
