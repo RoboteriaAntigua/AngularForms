@@ -13,20 +13,22 @@
 -----------------------------------------------------------------------------------
 
 # Intro
-  Recomendados para formularios pequeños.
-    Importar formsModule(x2)                      <br>
+  Recomendados para formularios pequeños:
+
     <input type="text" [(ngModel)]="variable1" /> <br>
     <p>Resultado: {{variable1}} </p>              <br>
 
     export class TemplateDrivenComponent {
       variable1='';
     }
-
+    Recordar Importar formsModule(x2).
 
 
 # Eventos para validacion en forms Template-driven (COmponente formulario-plantillas-detalle)
   Se les agrega un id asi: #id1="ngModel"                       <br>
-  <input type="email" [(ngModel)]="variable1" #id1="ngModel" >  <br>
+
+    <input type="email" [(ngModel)]="variable1" #id1="ngModel" >  <br>
+  
   Y lo podemos usar en el template asi:                         <br>
   <p> id1.pristine: {{id1.pristine | json }}< /p>               <br> 
 
@@ -38,12 +40,12 @@
     invalid The field content is not valid                    <br>
     valid The field content is valid                          <br>
 
-Estados de formulario completo:
-    pristine No fields have been modified yet
-    dirty One or more have been modified
-    invalid The form content is not valid
-    valid The form content is valid
-    submitted The form is submitted
+Estados de formulario completo:                               <br>
+    pristine No fields have been modified yet                 <br>
+    dirty One or more have been modified                      <br>
+    invalid The form content is not valid                     <br>
+    valid The form content is valid                           <br>
+    submitted The form is submitted                           <br>
 
 # Cuando es valid (Ver detalle en componente directivas-angular):
   Podemos definir nuestros custom validator in Template-driven pero ya vienen algunos interesantes:
@@ -56,7 +58,6 @@ Estados de formulario completo:
       required
       minlength="3"
       maxlength="30"
-      appForbiddenName="bob"
       [(ngModel)]="user.name"
       #name="ngModel"
     />
@@ -90,19 +91,20 @@ Estados de formulario completo:
 
 
 
-
-  # -------------------------- Formularios reactivos ----------------------------------------------------------------------------#
+  # Formularios reactivos
+  -----------------------------------------------------------------------------------------------------#
 
   # Intro
   Para formularios mas largos.
-    Importar FormControl y ReactiveFormsModule(x2) 
+    Importar FormControl y ReactiveFormsModule(x2):
+    <pre> 
      template: `
-        <h2>Formulario Reactivo</h2>
         <input type="text" [formControl]="control1" />
         <p>Resultado: {{control1.value}}</p>
       `,
     export class FormReactivo1Component {
      control1=new FormControl();
     }
-
+    </pre>
+    
 # Continuar
